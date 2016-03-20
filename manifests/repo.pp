@@ -37,17 +37,17 @@ class elasticsearch::repo {
 
       apt::source { 'elasticsearch':
         location => "http://packages.elastic.co/elasticsearch/${elasticsearch::repo_version}/debian",
-        release  => 'unstable',
+        release  => 'stable',
         repos    => 'main',
         key      => {
           'id'     => $::elasticsearch::repo_key_id,
-          'server' => $::elasticsearch::repo_key_source,
+          'source' => $::elasticsearch::repo_key_source,
         },
         include  => {
           'src' => false,
           'deb' => true,
         },
-}
+      }
     }
     'RedHat', 'Linux': {
       yumrepo { 'elasticsearch':
