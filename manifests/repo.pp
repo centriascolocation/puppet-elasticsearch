@@ -41,7 +41,7 @@ class elasticsearch::repo {
         repos       => 'main',
         key         => $::elasticsearch::repo_key_id,
         key_source  => $::elasticsearch::repo_key_source,
-        include_src => false,
+        include     => {},
       }
     }
     'RedHat', 'Linux': {
