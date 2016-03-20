@@ -38,7 +38,7 @@ class elasticsearch::repo {
       apt::source { 'elasticsearch':
         location => "http://packages.elastic.co/elasticsearch/${elasticsearch::repo_version}/debian",
         release  => 'unstable',
-        repos    => 'main'
+        repos    => 'main',
         key      => {
           'id'     => $::elasticsearch::repo_key_id,
           'server' => $::elasticsearch::repo_key_source,
