@@ -36,13 +36,18 @@ class elasticsearch::repo {
       Class['apt::update'] -> Package[$elasticsearch::package_name]
 
       apt::source { 'elasticsearch':
-        location    => "http://packages.elastic.co/elasticsearch/${elasticsearch::repo_version}/debian",
-        release     => 'stable',
-        repos       => 'main',
-        key         => $::elasticsearch::repo_key_id,
-        key_source  => $::elasticsearch::repo_key_source,
-        include     => {},
-      }
+        location => "http://packages.elastic.co/elasticsearch/${elasticsearch::repo_version}/debian",
+        release  => 'unstable',
+        repos    => 'main'
+        key      => {
+          'id'     => $::elasticsearch::repo_key_id,
+          'server' => $::elasticsearch::repo_key_source,
+        },
+        include  => {
+          'src' => false,
+          'deb' => true,
+        },
+}
     }
     'RedHat', 'Linux': {
       yumrepo { 'elasticsearch':
